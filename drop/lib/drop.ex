@@ -1,9 +1,8 @@
 import :math, only: [sqrt: 1]
 
 defmodule Drop do
-  def fall_velocity(where) do
-    {distance, planemo} = where
-    fall_velocity(distance, planemo)
+  def fall_velocity(tower = %Tower{}) do
+    fall_velocity(tower.height, tower.planemo)
   end
 
   defp fall_velocity(distance, planemo) when distance >= 0 do
