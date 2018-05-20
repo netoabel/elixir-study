@@ -1,6 +1,14 @@
 import :math, only: [sqrt: 1]
 
 defmodule Drop do
+  def drop do
+    receive do
+      {from, planemo, distance} ->
+        send(from, {planemo, distance, fall_velocity(distance, planemo)})
+        drop()
+    end
+  end
+
   def fall_velocity(tower = %Tower{}) do
     fall_velocity(tower.height, tower.planemo)
   end
@@ -34,6 +42,6 @@ defmodule Drop do
       IO.puts("Go on!")
     end
 
-    velocity_type
+    velocity
   end
 end
